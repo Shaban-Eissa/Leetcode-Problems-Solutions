@@ -2,15 +2,15 @@
  * @param {number[]} nums
  * @return {number}
  */
-var numIdenticalPairs = function(nums) {
-    var counter = 0;
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = 1; j < nums.length; j++) {
-      if (nums[i] === nums[j] && i < j) {
-        counter += 1;
-      }
-    }
-  }
+var numIdenticalPairs = function (nums) {
+    let numberOfIdenticalPairs = 0;
 
-  return counter;
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = 0; j < nums.length; j++) {
+            if (nums[i] === nums[j] && i < j) {
+                numberOfIdenticalPairs++;
+            }
+        }
+    }
+    return numberOfIdenticalPairs;
 };
