@@ -3,14 +3,16 @@
  * @return {number}
  */
 var numIdenticalPairs = function (nums) {
-    let numberOfIdenticalPairs = 0;
+    let count = {};
+    let result = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = 0; j < nums.length; j++) {
-            if (nums[i] === nums[j] && i < j) {
-                numberOfIdenticalPairs++;
-            }
+    for (let num of nums) {
+        if (num in count) {
+            result += count[num];
+            count[num]++;
+        } else {
+            count[num] = 1;
         }
     }
-    return numberOfIdenticalPairs;
+    return result;
 };
