@@ -39,9 +39,9 @@ var findDifference = function (nums1, nums2) {
         }
     }
 
-    for (let nums of nums2) {
-        if (binarySearch(nums1, nums) == -1 && !secondPart.includes(nums)) {
-            secondPart.push(nums);
+    for (let num of nums2) {
+        if (binarySearch(nums1, num) == -1 && !secondPart.includes(num)) {
+            secondPart.push(num);
         }
     }
     FinalResult.push(FirstPart);
