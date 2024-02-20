@@ -7,7 +7,7 @@ var rangeSumBST = function (root, low, high) {
       if (node.val >= low && node.val <= high) {
         sum += node.val;
       }
-      if (low < node.val) {
+      if (node.val > low) {
         stack.push(node.left);
       }
       if (node.val < high) {
