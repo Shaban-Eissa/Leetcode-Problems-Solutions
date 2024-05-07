@@ -1,37 +1,30 @@
 /**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-/**
  * @param {ListNode} head
  * @return {ListNode}
  */
 
-class Node {
-    constructor(val) {
-        this.val = val;
-        this.next = null;
-    }
+class ListNode {
+  constructor(val = 0, next = null) {
+    this.val = val;
+    this.next = next;
+  }
 }
-
 var doubleIt = function (head) {
-    let current = head;
-    let str = '';
+  const result = head.val * 2 > 9 ? new ListNode(1, head) : head;
+  let carry = 0;
+  let current = head;
 
-    while (current) {
-        str += current.val;
-        current = current.next;
-    }
-    const doubledStr = (BigInt(str) * 2n).toString();
-    
-    let newHead = new Node(doubledStr[0]);
-    let newNode = newHead;
-    for (let i = 1; i < doubledStr.length; i++) {
-        newNode.next = new Node(doubledStr[i]);
-        newNode = newNode.next;
-    }
-    return newHead;
+  while (current !== null) {
+    const next = current.next || 0;
+    carry = 0;
+
+    if (next.val * 2 > 9) carry = 1;
+    current.val = ((current.val * 2) % 10) + carry;
+
+    current = current.next;
+  }
+
+  return result;
 };
+
+console.log(doubleIt(new ListNode(1, new ListNode(8, new ListNode(9)))));
