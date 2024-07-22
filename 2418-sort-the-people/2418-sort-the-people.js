@@ -4,9 +4,17 @@
  * @return {string[]}
  */
 var sortPeople = function (names, heights) {
-    let finalArray = []
-    for (let i = 0; i < names.length; i++) {
-        finalArray.push([names[i], heights[i]])
-    }
-    return finalArray.sort((a, b) => b[1] - a[1]).map(item => item[0])
+  let result = [];
+  names.map((name, index) => {
+    result.push([name, heights[index]]);
+  });
+
+  return result
+    .sort((a, b) => {
+      if (a[1] === b[1]) {
+        return a[0] < b[0] ? 1 : -1;
+      }
+      return a[1] < b[1] ? 1 : -1;
+    })
+    .map((item) => item[0]);
 };
