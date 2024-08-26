@@ -4,8 +4,13 @@
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-  let sArray = s.split("").sort().join("");
-  let tArray = t.split("").sort().join("");
+  s = s.split("").sort();
+  t = t.split("").sort();
 
-  return sArray === tArray;
+  if (s.length !== t.length) return false;
+
+  for (var i = 0; i < s.length; i++) if (s[i] !== t[i]) return false;
+
+  return true;
 };
+console.log(isAnagram("anagram", "nagaram"));
