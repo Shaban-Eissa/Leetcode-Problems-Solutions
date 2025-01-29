@@ -2,14 +2,35 @@
  * @param {string} s
  * @return {number}
  */
+
+let queue = []
 var firstUniqChar = function (s) {
-    let map = new Map();
+
     for (let i = 0; i < s.length; i++) {
-        if (map.has(s[i])) {
-            map.set(s[i], map.get(s[i]) + 1);
+        enqueue(s[i])
+    }
+
+    let map = {}
+    for (let i = 0; i < s.length; i++) {
+        if (map[s[i]]) {
+            map[s[i]]++
         } else {
-            map.set(s[i], 1);
+            map[s[i]] = 1
         }
     }
-    return s.split('').findIndex((item) => map.get(item) === 1);
+
+    for (let i = 0; i < s.length; i++) {
+        if (map[s[i]] === 1) {
+            return i
+        }
+    }
+    return -1
 };
+
+const enqueue = (char) => {
+    queue.push(char)
+}
+
+const dequeue = () => {
+    return queue.shift()
+}
