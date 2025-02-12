@@ -1,6 +1,5 @@
 var MyStack = function () {
-    this.queue1 = [];
-    this.queue2 = [];
+    this.queue = [];
 };
 
 /**
@@ -8,32 +7,31 @@ var MyStack = function () {
  * @return {void}
  */
 MyStack.prototype.push = function (x) {
-    this.queue2.push(x);
-    while (this.queue1.length > 0) {
-        this.queue2.push(this.queue1.shift());
+    this.queue.push(x);
+    for (let i = 0; i < this.queue.length - 1; i++) {
+        this.queue.push(this.queue.shift());
     }
-    [this.queue1, this.queue2] = [this.queue2, this.queue1];
 };
 
 /**
  * @return {number}
  */
 MyStack.prototype.pop = function () {
-    return this.queue1.shift();
+    return this.queue.shift();
 };
 
 /**
  * @return {number}
  */
 MyStack.prototype.top = function () {
-    return this.queue1[0];
+    return this.queue[0];
 };
 
 /**
  * @return {boolean}
  */
 MyStack.prototype.empty = function () {
-    return this.queue1.length === 0;
+    return this.queue.length === 0;
 };
 
 /**
